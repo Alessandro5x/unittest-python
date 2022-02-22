@@ -1,14 +1,14 @@
 from .sub import SubOperation
-from faker import Faker
+import pytest
 
-fake = Faker()
+subOperation = SubOperation()
 
-def test_sub():
-    subOperation = SubOperation()
-    number1 = fake.random_number()
-    number2 = fake.random_number()
-    expect = number1 - number2
+@pytest.mark.parametrize('num1, num2, result',
+    [
+        (3,2,1),
+        (4,1,3)
+    ]
+)
 
-    result = subOperation.diferenca(number1, number2)
-
-    assert result == expect
+def test_diferenca(num1, num2, result):
+    assert subOperation.diferenca(num1, num2) == result
